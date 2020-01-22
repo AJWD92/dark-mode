@@ -14,7 +14,7 @@ const Chart = ({ sparklineData }) => {
   let changeStroke = (data) =>  {
     setClickedDarkMode({ clickedDarkMode: data })
   }
-  let strokeColor = clickedDarkMode ? '#95d600'  : '#8884d8' ? '#8884d8' : '#95d600';
+  let strokeColor = clickedDarkMode ? '#95d600' : '#8884d8' ;
   const formattedData = sparklineData
     .map((price, idx) => {
       if (idx % 6 === 0) {
@@ -30,16 +30,17 @@ const Chart = ({ sparklineData }) => {
       return null;
     })
     .filter(data => data);
-
+     console.log('Leaving')
   return (
     <LineChart width={1100} height={300} data={formattedData}>
-      <Line type="monotone" dataKey="value" stroke={strokeColor} strokeWidth='3.5' onMouseEnter={changeStroke} onMouseLeave={`{stroke={strokeColor}}`} />
+      <Line type="monotone" dataKey="value" stroke={strokeColor} strokeWidth='3.5' onMouseEnter={changeStroke} onMouseLeave={changeStroke} />
       <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
       <XAxis dataKey="date" interval={3} />
       <YAxis />
       <Tooltip />
     </LineChart>
   );
+  
 };
 
 export default Chart;
